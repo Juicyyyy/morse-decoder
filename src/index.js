@@ -38,8 +38,29 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    var newstr = expr.replace(/(.{10})/g,"$1 ");
+    var str_11 = newstr.replace(/11/gi, '-');
+    var str_10 = str_11.replace(/10/gi, '.');
+    var str = str_10.replace(/[**********]/gi, ' ');
+   
+    var newnewstr = str.replace(/0/gi, '');
+
+    var messageConverted = [];
+
+    newnewstr.split("          ").map(function (word) {
+        word.split(" ").map(function (letter) {
+            messageConverted.push(MORSE_TABLE[letter]);
+        });
+        messageConverted.push(" ");
+    });
+     
+    result = messageConverted.join("");
+
+    return result.slice(0, -1);
+
 }
+
+
 
 module.exports = {
     decode
